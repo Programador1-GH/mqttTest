@@ -25,9 +25,9 @@ function main () {
           }
         })
       });
-      client.on('message', (topic, message) => {
+      client.on('message', (topic, payload) => {
           const timeStamp = new Date().toString().slice(16, 24);
-          console.log(`${timeStamp} "${topic}" ${message.toString()}`);
+          console.log(`${timeStamp} "${topic}" ${payload.toString()}`);
           //client.end()
         });
       const timeStamp = new Date().toString().slice(16, 24);
