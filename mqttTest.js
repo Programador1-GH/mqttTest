@@ -1,7 +1,7 @@
 //Archivo para escuchar topics en mqtt
 
 const mqtt = require('mqtt');
-const config = require("../config");
+const config = require("./config.js");
 
 function main () {
   let client = null;
