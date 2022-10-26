@@ -1,6 +1,13 @@
 //Archivo para escuchar topics en mqtt
-const mqtt = require('mqtt');
+
+//Importaciones de librerias internas
 const config = require("./config.js");
+
+//Importaciones de librerias externas
+const mqtt = require('mqtt');
+const myPackage = require('./package.json');
+
+const stamp = `${myPackage.name} ${myPackage.version} ${config.computer}`;
 
 function main () {
   let client = null;
@@ -17,14 +24,14 @@ function main () {
         console.log (``); //Dejo una linea en blanco para que la borre "process.stdout.clearLine(1);" la primera vez.
         client.subscribe(config.statusTopic, (err) => {
           if (!err) {
-            client.publish(config.statusTopic, `mqttTest.js suscribed to ${config.statusTopic}`);
+            client.publish(config.statusTopic, JSON.stringify({ author: stamp, suscribed: config.statusTopic }));
           } else {
             console.error(err);
           }
         });
         client.subscribe(config.execTopic, (err) => {
           if (!err) {
-            client.publish(config.statusTopic, `mqttTest.js suscribed to ${config.execTopic}`);
+            client.publish(config.statusTopic, JSON.stringify({ author: stamp, suscribed: config.execTopic }));
           } else {
             console.error(err);
           }
