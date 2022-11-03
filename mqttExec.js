@@ -24,7 +24,7 @@ function main () {
         console.log (``); //Dejo una linea en blanco para que la borre "process.stdout.clearLine(1);" la primera vez.
         client.subscribe(config.execTopic, (err) => {
           if (!err) {
-            client.publish(config.statusTopic, JSON.stringify({ author: stamp, suscribed: config.statusTopic }));
+            client.publish(config.statusTopic, JSON.stringify({ author: stamp, suscribed: config.execTopic }));
           } else {
             console.error(err);
           }
