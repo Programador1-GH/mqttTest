@@ -29,13 +29,6 @@ function main () {
             console.error(err);
           }
         });
-        client.subscribe(config.execTopic, (err) => {
-          if (!err) {
-            client.publish(config.statusTopic, JSON.stringify({ author: stamp, suscribed: config.execTopic }));
-          } else {
-            console.error(err);
-          }
-        })
       });
       client.on('message', (topic, payload) => {
           process.stdout.moveCursor(0,-1);
